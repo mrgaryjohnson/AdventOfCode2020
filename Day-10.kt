@@ -28,6 +28,11 @@ fun accumulateOptions(p : Pair<Int, List<Long>>, i : Int) : Pair<Int, List<Long>
     return Pair(i, shift(c.second, sum))
 }
 
+// To calculator the number of possible options, I am using a Fibonacci-like series.
+//   f(n) is either:
+//     0 if n is mssing from the list, 
+//     or f(n-1) + f(n-2) + f(n-3) if it is in the list
+// The Big-O is based on the maximum value in the list, not the size of the list
 fun getArrangementOptions(l : List<Int>) : Long {
     val optionsPair = l.sorted()
             .fold(Pair(0, listOf(1L, 0L, 0L))){p, i -> accumulateOptions(p, i)}
